@@ -27,14 +27,14 @@ int main()
             return 1;
         };
 
-        auto square = [](double x)
-        {
-            return x * x;
-        };
-
         auto slope = [](double x)
         {
             return x / 2;
+        };
+
+        auto square = [](double x)
+        {
+            return x * x;
         };
 
         auto sloping_cos = [](double x)
