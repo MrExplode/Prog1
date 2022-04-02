@@ -15,16 +15,6 @@ ostream& operator<<(ostream& os, vector<T>& vector) {
     return os;
 }
 
-
-// copy only the elements that match the predicate
-template<class T>
-void copy_if(vector<T>& from, vector<T>& to, std::function<bool(T)> predicate) {
-    for (const auto& e : from) {
-        if (predicate(e))
-            to.push_back(e);
-    }
-}
-
 int main() {
     vector<double> vd;
     // fancy random values
@@ -58,9 +48,7 @@ int main() {
     std::cout << "Double vector mean: " << vdMean << std::endl << std::endl;
 
     vector<double> vd2;
-    // cursed stuff, don't look!
-    const double meanConst = vdMean;
-    copy_if(vd, vd2, static_cast<std::function<bool(double)>>([meanConst](double element){ return element < meanConst;}));
+    std::copy_if(vd.begin(), vd.end(), vd2.begin(), [vdMean](double value) { return value < vdMean; });
     std::cout << "Values below mean: " << vd2 << std::endl << std::endl;
 
     std::sort(vd.begin(), vd.end());
