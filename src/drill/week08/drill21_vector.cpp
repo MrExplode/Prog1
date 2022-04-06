@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <vector>
 #include <algorithm>
@@ -17,9 +18,10 @@ ostream& operator<<(ostream& os, vector<T>& vector) {
 
 int main() {
     vector<double> vd;
-    // fancy random values
-    for (int i = 0; i < 16; i++)
-        vd.push_back((std::rand() % 150) / (double)3);
+    ifstream fileIn {"data.txt"};
+    double value;
+    while (fileIn >> value)
+        vd.push_back(value);
     
     std::cout << vd << std::endl;
 
