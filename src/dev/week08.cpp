@@ -1,5 +1,5 @@
 /*
-    Collections 2 - Map, Set
+    Collections 2 - Map
     drill 21
 */
 
