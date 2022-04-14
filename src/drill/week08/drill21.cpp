@@ -79,12 +79,11 @@ int main() {
     std::copy(vi.begin(), vi.end(), li.begin());
 
     // sort with lambda as predicate
-    // WARNING: apparently this doesn't compile with MINGW64 compiler
-    std::sort(li.begin(), li.end(), [](const Item& a, const Item& b) { return a.name < b.name; });
+    li.sort([](const Item& a, const Item& b) { return a.name < b.name; });
 
-    std::sort(li.begin(), li.end(), [](const Item& a, const Item& b) { return a.iid < b.iid; });
+    li.sort([](const Item& a, const Item& b) { return a.iid < b.iid; });
 
-    std::sort(li.begin(), li.end(), [](const Item& a, const Item& b) { return a.value < b.value; });
+    li.sort([](const Item& a, const Item& b) { return a.value < b.value; });
 
     li.push_back(Item{"horse shoe", 99, 12.34});
     li.push_back(Item{"Canon S400", 9988, 499.95});
