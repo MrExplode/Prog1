@@ -75,10 +75,9 @@ int main() {
 
     vi.erase(std::remove_if(vi.begin(), vi.end(), [](const Item& item) { return item.iid == 10 || item.iid == 12; }));
 
-    list<Item> li;
-    std::copy(vi.begin(), vi.end(), li.begin());
+    list<Item> li(vi.begin(), vi.end());
 
-    // sort with lambda as predicate
+        // sort with lambda as predicate
     li.sort([](const Item& a, const Item& b) { return a.name < b.name; });
 
     li.sort([](const Item& a, const Item& b) { return a.iid < b.iid; });
@@ -89,6 +88,6 @@ int main() {
     li.push_back(Item{"Canon S400", 9988, 499.95});
 
     li.remove_if([](const Item& item) { return item.name == "apple" || item.name == "banana"; });
-    
+
     li.remove_if([](const Item& item) { return item.iid == 10 || item.iid == 12; });
 }

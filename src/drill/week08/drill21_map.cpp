@@ -48,10 +48,10 @@ int main() {
 
         print(msi);
         
-        // alternative - std::accumulate (way overcomplicated for this task in my opinion)
-        int sum = 0;
-        for (const auto& e : msi)
-            sum += e.second;
+        //int sum = 0;
+        //for (const auto& e : msi)
+        //    sum += e.second;
+        int sum = std::accumulate(std::begin(msi), std::end(msi), 0, [](std::pair<string, int>& a, std::pair<string, int>& b){ return a.second + b.second;});
         std::cout << "Sum of elements: " << sum << std::endl;
 
         std::map<int, string> mis;

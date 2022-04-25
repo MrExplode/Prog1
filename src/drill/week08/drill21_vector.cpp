@@ -19,7 +19,7 @@ ostream& operator<<(ostream& os, vector<T>& vector) {
 
 int main() {
     vector<double> vd;
-    ifstream fileIn {"data.txt"};
+    ifstream fileIn {"data2.txt"};
     double value;
     while (fileIn >> value)
         vd.push_back(value);
@@ -53,8 +53,7 @@ int main() {
     std::cout << "Double vector mean: " << vdMean << std::endl << std::endl;
 
     vector<double> vd2;
-    auto it = std::copy_if(vd.begin(), vd.end(), vd2.begin(), [vdMean](double value) { return value < vdMean; });
-    vd2.resize(std::distance(vd2.begin(), it));
+    auto it = std::copy_if(vd.begin(), vd.end(), std::back_inserter(vd2), [vdMean](double value) { return value < vdMean; });
     std::cout << "Values below mean: " << vd2 << std::endl << std::endl;
 
     std::sort(vd.begin(), vd.end());
