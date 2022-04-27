@@ -51,7 +51,7 @@ int main() {
         //int sum = 0;
         //for (const auto& e : msi)
         //    sum += e.second;
-        int sum = std::accumulate(std::begin(msi), std::end(msi), 0, [](std::pair<string, int>& a, std::pair<string, int>& b){ return a.second + b.second;});
+        int sum = std::accumulate(std::begin(msi), std::end(msi), 0, [](const int previous, const std::pair<string, int>& current){ return previous + current.second;});
         std::cout << "Sum of elements: " << sum << std::endl;
 
         std::map<int, string> mis;
