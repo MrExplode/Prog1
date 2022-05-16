@@ -1,6 +1,7 @@
 # Prog1
 
-Source codes for `high level programming 1` course.
+Source codes for `high level programming 1` course.  
+Don't for get to check out the (literally) [Hungarian version](https://github.com/MrExplode/Prog1/tree/hulang) of the code.
 
 ### Compiling
 
