@@ -11,7 +11,7 @@ using namespace std;
 template<typename K, typename V>
 void print(const std::map<K, V>& map) {
     // std::pair<K, V>
-    for (auto const& e : map) {
+    for (const auto& e : map) {
         std::cout << e.first << "\t" << e.second << std::endl;
     }
 }

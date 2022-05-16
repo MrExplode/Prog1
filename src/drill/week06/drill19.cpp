@@ -30,7 +30,7 @@ void S<T>::operator=(const T& value){
 	val = value;
 }
 
-template<class T>
+template<typename T>
 T& read_val(T& value) {
     std::cin >> value;
     // modified for ease of use (inlining function)
@@ -47,7 +47,7 @@ ostream& operator<<(ostream& os, vector<T>& vector) {
 
 template<class T>
 istream& operator>>(istream& is, vector<T>& vector) {
-    std::cout << "vector input format: { value, value, value}" << std::endl;
+    std::cout << "vector input format: { value, value, value }" << std::endl;
     char dummy;
     if (read_val(dummy) != '{') {
         is.unget();
@@ -55,13 +55,16 @@ istream& operator>>(istream& is, vector<T>& vector) {
     }
     for (T value; is >>value;) {
         vector.push_back(value);
-        if (read_val(dummy) != ',')
-        break;
+        if (read_val(dummy) != ',') {
+            read_val(dummy);
+            break;
+        }
     }
     return is;
 }
 
 int main() {
+    S<int> def;
     S<int> iw {12};
     S<char> cw {'x'};
     S<double> dw {1.234};
@@ -78,7 +81,8 @@ int main() {
     iw.set(read_val(i));
 
     char c;
-    cw.set(read_val(c));
+    //cw.set(read_val(c));
+    cw = read_val(c);
 
     double d;
     dw.set(read_val(d));

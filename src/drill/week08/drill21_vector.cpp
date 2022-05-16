@@ -53,6 +53,7 @@ int main() {
     std::cout << "Double vector mean: " << vdMean << std::endl << std::endl;
 
     vector<double> vd2;
+    // std::back_inserter creates an iterator that uses push_back internally, therefore we can "iterate" with it on an empty vector
     auto it = std::copy_if(vd.begin(), vd.end(), std::back_inserter(vd2), [vdMean](double value) { return value < vdMean; });
     std::cout << "Values below mean: " << vd2 << std::endl << std::endl;
 

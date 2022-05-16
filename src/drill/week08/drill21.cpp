@@ -71,7 +71,8 @@ int main() {
     // https://stackoverflow.com/a/16013546
     // and
     // https://stackoverflow.com/a/9053941
-    vi.erase(std::remove_if(vi.begin(), vi.end(), [](const Item& item) { return item.name == "apple" || item.name == "banana"; }));
+    auto it = std::remove_if(vi.begin(), vi.end(), [](const Item& item) { return item.name == "apple" || item.name == "banana"; });
+    vi.erase(it);
 
     vi.erase(std::remove_if(vi.begin(), vi.end(), [](const Item& item) { return item.iid == 10 || item.iid == 12; }));
 

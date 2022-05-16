@@ -1,0 +1,10 @@
+{ item1 1 2 }
+{ xd 2 26 }
+{ alma 3 25 }
+{ prog 4 22 }
+{ tégla 5 2123 }
+{ apple 6 2.5 }
+{ item3 12 7 }
+{ banana 11 1 }
+{ item4 10 123 }
+{ item6 13 0 }
