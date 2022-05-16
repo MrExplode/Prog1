@@ -1,118 +1,118 @@
 #include "../../gui/Simple_window.h"
 #include "../../gui/Graph.h"
+#include "hulang.h"
 
-int main()
+szám fő()
 {
-    try
+    próbál
     {
+        Pont t1{100, 100};
 
-        Point t1{100, 100};
+        Egyszerű_ablak win{t1, 640, 400, "Saját ablak"};
 
-        Simple_window win{t1, 640, 400, "My window"};
+        win.várj_a_gombra();
 
-        win.wait_for_button();
+        Tengely xa{Tengely::x, Pont{30, 300}, 200, 10, "X tengely"};
 
-        Axis xa{Axis::x, Point{30, 300}, 200, 10, "X axis"};
+        win.csatlakoztat(xa);
+        win.címke_beállít("X Tengely");
+        win.várj_a_gombra();
 
-        win.attach(xa);
-        win.set_label("X Axis");
-        win.wait_for_button();
+        Tengely ya{Tengely::y, Pont{30, 300}, 200, 10, "Y tengely"};
+        ya.szín_beállít(Szín::türkiz);
+        win.csatlakoztat(ya);
+        win.címke_beállít("Y Tengely");
+        win.várj_a_gombra();
 
-        Axis ya{Axis::y, Point{30, 300}, 200, 10, "Y axis"};
-        ya.set_color(Color::cyan);
-        win.attach(ya);
-        win.set_label("Y axis");
-        win.wait_for_button();
+        Funkció sine{sin, 0, 100, Pont{20, 150}, 1000, 50, 50};
+        win.csatlakoztat(sine);
+        win.címke_beállít("Szinusz funkció");
+        win.várj_a_gombra();
+        sine.szín_beállít(Szín::magenta);
 
-        Function sine{sin, 0, 100, Point{20, 150}, 1000, 50, 50};
-        win.attach(sine);
-        win.set_label("Sine function");
-        win.wait_for_button();
-        sine.set_color(Color::magenta);
+        Grafikus_könyvtár::Sokszög poly;
+        poly.hozzáad(Pont{300, 200});
+        poly.hozzáad(Pont{350, 100});
+        poly.hozzáad(Pont{400, 200});
 
-        Graph_lib::Polygon poly;
-        poly.add(Point{300, 200});
-        poly.add(Point{350, 100});
-        poly.add(Point{400, 200});
+        poly.szín_beállít(Szín::zöld);
+        poly.stílus_beállít(Vonal_stílus::csíkpont);
+        win.csatlakoztat(poly);
+        win.címke_beállít("Sokszög rajzolás");
+        win.várj_a_gombra();
 
-        poly.set_color(Color::green);
-        poly.set_style(Line_style::dashdot);
-        win.attach(poly);
-        win.set_label("Draw polygon");
-        win.wait_for_button();
-
-        Graph_lib::Rectangle r{Point{200, 200}, 150, 70};
-        win.attach(r);
-        win.set_label("Draw rectangle");
-        win.wait_for_button();
+        Grafikus_könyvtár::Téglalap r{Pont{200, 200}, 150, 70};
+        win.csatlakoztat(r);
+        win.címke_beállít("Téglalap rajzolás");
+        win.várj_a_gombra();
 
         Closed_polyline poly_rect;
-        poly_rect.add(Point{100, 50});
-        poly_rect.add(Point{200, 50});
-        poly_rect.add(Point{200, 100});
-        poly_rect.add(Point{100, 100});
-        poly_rect.add(Point{50, 75});
+        poly_rect.hozzáad(Pont{100, 50});
+        poly_rect.hozzáad(Pont{200, 50});
+        poly_rect.hozzáad(Pont{200, 100});
+        poly_rect.hozzáad(Pont{100, 100});
+        poly_rect.hozzáad(Pont{50, 75});
 
-        win.attach(poly_rect);
-        win.set_label("Draw closed polyline");
-        win.wait_for_button();
+        win.csatlakoztat(poly_rect);
+        win.címke_beállít("Draw closed polyline");
+        win.várj_a_gombra();
 
-        r.set_fill_color(Color::yellow);
-        poly.set_style(Line_style(Line_style::dash, 5));
-        poly_rect.set_style(Line_style(Line_style::dash, 3));
-        poly_rect.set_fill_color(Color::green);
-        win.set_label("Change colors");
-        win.wait_for_button();
+        r.kitöltő_szín_beállít(Szín::sárga);
+        poly.stílus_beállít(Vonal_stílus(Vonal_stílus::csík, 5));
+        poly_rect.stílus_beállít(Vonal_stílus(Vonal_stílus::csík, 3));
+        poly_rect.kitöltő_szín_beállít(Szín::zöld);
+        win.címke_beállít("Change colors");
+        win.várj_a_gombra();
 
-        Text t{Point{120, 100}, "Hello, Graphical world!"};
-        win.attach(t);
-        win.set_label("Text");
-        win.wait_for_button();
+        Szöveg t{Pont{120, 100}, "Szia, Grafikus világ!"};
+        win.csatlakoztat(t);
+        win.címke_beállít("Szöveg");
+        win.várj_a_gombra();
 
-        t.set_font(Graph_lib::Font::times_bold);
-        t.set_font_size(20);
-        win.set_label("Change font");
-        win.wait_for_button();
+        t.betűtípus_beáll(Grafikus_könyvtár::Betűtípus::times_bold);
+        t.betűméret_beáll(20);
+        win.címke_beállít("Betűtípus megváltoztatása");
+        win.várj_a_gombra();
 
-        Image ii(Point{100, 50}, "plane.jpg");
-        win.attach(ii);
-        win.set_label("Draw image");
-        win.wait_for_button();
+        Kép ii(Pont{100, 50}, "plane.jpg");
+        win.csatlakoztat(ii);
+        win.címke_beállít("Kép rajzolás");
+        win.várj_a_gombra();
 
-        ii.move(100, 200);
-        win.set_label("Move image");
-        win.wait_for_button();
+        ii.mozgat(100, 200);
+        win.címke_beállít("Kép mozgatás");
+        win.várj_a_gombra();
 
-        Circle circle{Point{100, 200}, 50};
-        Graph_lib::Ellipse ellipse{Point{100, 200}, 75, 25};
-        ellipse.set_color(Color::dark_red);
-        Mark mark{Point{100, 200}, 'x'};
+        Kör circle{Pont{100, 200}, 50};
+        Grafikus_könyvtár::Elipszis ellipse{Pont{100, 200}, 75, 25};
+        ellipse.szín_beállít(Szín::sötét_piros);
+        Jel mark{Pont{100, 200}, 'x'};
 
-        ostringstream oss;
+        kiszövegfolyam oss;
         oss << "Screen size: " << x_max() << "*" << y_max()
             << "; windows size: " << win.x_max() << "*" << win.y_max();
-        Text size{Point{300, 25}, oss.str()};
+        Szöveg size{Pont{300, 25}, oss.szöv()};
 
-        Image cal{Point{225, 225}, "snow.gif"};
-        cal.set_mask(Point{40, 100}, 300, 100);
+        Kép cal{Pont{225, 225}, "snow.gif"};
+        cal.maszk_beállít(Pont{40, 100}, 300, 100);
 
-        win.attach(circle);
-        win.attach(mark);
-        win.attach(ellipse);
+        win.csatlakoztat(circle);
+        win.csatlakoztat(mark);
+        win.csatlakoztat(ellipse);
 
-        win.attach(size);
-        win.attach(cal);
-        win.set_label("Extras");
-        win.wait_for_button();
+        win.csatlakoztat(size);
+        win.csatlakoztat(cal);
+        win.címke_beállít("Extras");
+        win.várj_a_gombra();
     }
-    catch (exception &e)
+    elkap (kivétel &e)
     {
-        cerr << "exception: " << e.what() << '\n';
-        return 1;
+        chiba << "kivétel: " << e.mi() << '\n';
+        visszaad 1;
     }
-    catch (...)
+    elkap (...)
     {
-        cerr << "error\n";
-        return 2;
+        chiba << "error\n";
+        visszaad 2;
     }
 }

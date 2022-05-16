@@ -2,71 +2,72 @@
 #include <string>
 #include <stdexcept>
 #include <vector>
+#include "hulang.h"
 
-using namespace std;
+használ névűr alap;
 
-class Person
+osztály Person
 {
-private:
-    string fn;
-    string sn;
-    int a;
+privát:
+    szöveg fn;
+    szöveg sn;
+    szám a;
 
-public:
+nyilvános:
     Person() {}
-    Person(string first_name, string second_name, int age) : fn(first_name), sn(second_name), a(age)
+    Person(szöveg first_name, szöveg second_name, szám age) : fn(first_name), sn(second_name), a(age)
     {
         // age check
-        if (a < 0 || a > 150)
-            throw runtime_error("invalid age");
+        ha (a < 0 || a > 150)
+            dob futóidő_hiba("invalid age");
 
         // name check
-        string invalid[] = {";", ":", "\"", "\'", "[", "]", "*", "&", "^", "%", "$", "@", "!"};
-        for (int i = 0; i < 13; i++)
+        szöveg invalid[] = {";", ":", "\"", "\'", "[", "]", "*", "&", "^", "%", "$", "@", "!"};
+        mert (szám i = 0; i < 13; i++)
         {
-            if (fn.find(invalid[i]) != string::npos || sn.find(invalid[i]) != string::npos)
-                throw runtime_error("invalid name");
+            if (fn.talál(invalid[i]) != szöveg::npos || sn.talál(invalid[i]) != szöveg::npos)
+                dob futóidő_hiba("invalid name");
         }
     };
-    string first_name() const { return fn; }
-    string second_name() const { return sn; }
-    int age() const { return a; }
+    szöveg first_name() állandó { visszaad fn; }
+    szöveg second_name() állandó { visszaad sn; }
+    szám age() állandó { visszaad a; }
 };
 
-ostream &operator<<(ostream &os, const Person &p)
+kifolyam &kezelő<<(kifolyam &os, const Person &p)
 {
-    return os << p.first_name() << " " << p.second_name() << " " << p.age();
+    visszaad os << p.first_name() << " " << p.second_name() << " " << p.age();
 }
 
-istream &operator>>(istream &is, Person &p)
+befolyam &kezelő>>(befolyam &is, Person &p)
 {
-    string first_name;
-    string second_name;
-    int age;
+    szöveg first_name;
+    szöveg second_name;
+    szám age;
     is >> first_name >> second_name >> age;
     p = Person(first_name, second_name, age);
-    return is;
+    visszaad is;
 }
 
-int main()
+szám fő()
 {
     Person p = Person("Goofy", "Goo", 63);
-    cout << p.first_name() << " " << p.second_name() << " " << p.age() << endl;
-    cout << p << endl;
+    cki << p.first_name() << " " << p.second_name() << " " << p.age() << sorv;
+    cki << p << sorv;
     Person p2;
-    cin >> p2;
-    cout << p2 << endl;
+    cbe >> p2;
+    cki << p2 << sorv;
 
-    vector<Person> vec;
-    for (Person p; cin >> p;)
+    vektor<Person> vec;
+    mert (Person p; cbe >> p;)
     {
-        if (p.first_name() == "end")
-            break;
-        vec.push_back(p);
+        ha (p.first_name() == "end")
+            eltör;
+        vec.nyom_hátra(p);
     }
 
-    for (auto person : vec)
+    mert (auto person : vec)
     {
-        cout << person << endl;
+        cki << person << sorv;
     }
 }

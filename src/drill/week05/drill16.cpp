@@ -1,21 +1,22 @@
 #include "../../gui/GUI.h"
 #include "Lines_window.h"
+#include "hulang.h"
 
-int main()
+szám fő()
 {
-    try
+    próbál
     {
-        Lines_window win{Point{100, 100}, 600, 400, "lines"};
-        return gui_main();
+        Vonalak_ablak win{Pont{100, 100}, 600, 400, "vonalak"};
+        visszaad gui_main();
     }
-    catch (exception &e)
+    elkap (kivétel &e)
     {
-        std::cerr << "exception: " << e.what() << std::endl;
-        return 1;
+        alap::chiba << "kivétel: " << e.mi() << alap::sorv;
+        visszaad 1;
     }
-    catch (...)
+    elkap (...)
     {
-        std::cerr << "unknown exception happened!" << std::endl;
-        return 2;
+        alap::chiba << "ismeretlen kivétel történt!" << alap::sorv;
+        visszaad 2;
     }
 }

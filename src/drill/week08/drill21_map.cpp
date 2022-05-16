@@ -4,28 +4,27 @@
 #include <algorithm>
 #include <stdexcept>
 #include <numeric>
+#include "hulang.h"
 
-using namespace std;
+használ névűr alap;
 
-// iterating on a map
-template<typename K, typename V>
-void print(const std::map<K, V>& map) {
-    // std::pair<K, V>
-    for (const auto& e : map) {
-        std::cout << e.first << "\t" << e.second << std::endl;
+minta<típusnév K, típusnév V>
+üresség print(állandó alap::térkép<K, V>& map) {
+    mert (állandó auto& e : map) {
+        alap::cki << e.első << "\t" << e.második << alap::sorv;
     }
 }
 
-void read(std::map<string, int>& map) {
-    string key;
-    int value;
-    std::cin >> key >> value;
+üresség read(alap::térkép<szöveg, szám>& map) {
+    szöveg key;
+    szám value;
+    alap::cbe >> key >> value;
     map[key] = value;
 }
 
-int main() {
-    try {
-        std::map<string, int> msi;
+szám fő() {
+    próbál {
+        alap::térkép<szöveg, szám> msi;
         msi["asd"] = 1;
         msi["b"] = 12;
         msi["cd"] = 17;
@@ -39,11 +38,10 @@ int main() {
 
         print(msi);
 
-        //msi.erase(msi.begin(), msi.end());
-        msi.clear();
+        msi.tisztít();
 
-        std::cout << std::endl << "Define 10 key value pairs" << std::endl;
-        for (int i = 0; i < 10; i++)
+        alap::cki << alap::sorv << "Adj 10 kulcs érték párt" << alap::sorv;
+        mert (szám i = 0; i < 10; i++)
             read(msi);
 
         print(msi);
@@ -51,18 +49,18 @@ int main() {
         //int sum = 0;
         //for (const auto& e : msi)
         //    sum += e.second;
-        int sum = std::accumulate(std::begin(msi), std::end(msi), 0, [](const int previous, const std::pair<string, int>& current){ return previous + current.second;});
-        std::cout << "Sum of elements: " << sum << std::endl;
+        szám sum = alap::felhalmoz(alap::kezd(msi), alap::vég(msi), 0, [](állandó szám previous, állandó alap::pár<szöveg, szám>& current){ visszaad previous + current.második;});
+        alap::cki << "Tagok összege: " << sum << alap::sorv;
 
-        std::map<int, string> mis;
-        for (const auto& e : msi)
+        alap::térkép<szám, szöveg> mis;
+        mert (állandó auto& e : msi)
             mis[e.second] = e.first;
 
-        std::cout << "mis map: " << std::endl;
+        alap::cki << "mis térkép: " << alap::sorv;
         print(mis);
-    } catch (exception& e) {
-        std::cerr << "ecxception: " << e.what() << std::endl;
-    } catch (...) {
-        std::cerr << "unknown exception!" << std::endl;
+    } elkap (kivétel& e) {
+        alap::chiba << "kivétel: " << e.mi() << alap::sorv;
+    } elkap (...) {
+        alap::chiba << "ismeretlen kivétel!" << alap::sorv;
     }
 }

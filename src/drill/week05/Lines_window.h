@@ -1,112 +1,113 @@
 #include "../../gui/GUI.h"
+#include "hulang.h"
 
-using namespace Graph_lib;
+használ névűr Grafikus_könyvtár;
 
-struct Lines_window : Graph_lib::Window {
-    Lines_window(Point xy, int w, int h, const string &title);
+struktúra Vonalak_ablak : Grafikus_könyvtár::Ablak {
+    Lines_window(Pont xy, szám w, szám h, állandó szöveg &title);
 
-private:
+privát:
     Open_polyline lines;
 
-    Button next_button;
-    Button quit_button;
+    Gomb next_button;
+    Gomb quit_button;
 
-    In_box next_x;
-    In_box next_y;
+    Be_doboz next_x;
+    Be_doboz next_y;
 
-    Out_box xy_out;
+    Ki_doboz xy_out;
 
     // coloring options
-    Menu color_menu;
-    Button menu_button;
+    Menü color_menu;
+    Gomb menu_button;
 
     // styling options
-    Menu style_menu;
-    Button style_button;
+    Menü style_menu;
+    Gomb style_button;
     // track menu state
-    bool style_open;
+    logikai style_open;
 
-    void next();
-    void quit();
+    üresség next();
+    üresség quit();
 
-    bool wait_for_button();
+    logikai várj_a_gombra();
 
-    void change(Color c) { lines.set_color(c); }
-    void change_style(Line_style s) { lines.set_style(s); }
+    üresség change(Szín c) { lines.szín_beállít(c); }
+    üresség change_style(Vonal_stílus s) { lines.stílus_beállít(s); }
 
-    void hide_color_menu() {
-        color_menu.hide();
-        menu_button.show();
-        style_button.move(0, -50);
-        style_menu.move(0, -50);
+    üresség hide_color_menu() {
+        color_menu.elrejt();
+        menu_button.mutat();
+        style_button.mozgat(0, -50);
+        style_menu.mozgat(0, -50);
         // on move the widget resets to visible
-        if (!style_open)
-            style_menu.hide();
-        else
-            style_button.hide();
+        ha (!style_open)
+            style_menu.elrejt();
+        különben
+            style_button.elrejt();
     }
 
-    void hide_style_menu() {
-        style_menu.hide();
-        style_button.show();
-        style_open = false;
+    üresség hide_style_menu() {
+        style_menu.elrejt();
+        style_button.mutat();
+        style_open = hamis;
     }
 
-    void red_pressed() {
-        change(Color::red);
+    üresség red_pressed() {
+        change(Szín::piros);
         hide_color_menu();
     }
 
-    void blue_pressed() {
-        change(Color::blue);
+    üresség blue_pressed() {
+        change(Szín::kék);
         hide_color_menu();
     }
 
-    void black_pressed() {
-        change(Color::black);
+    üresség black_pressed() {
+        change(Szín::fekete);
         hide_color_menu();
     }
 
-    void color_pressed() {
-        menu_button.hide();
+    üresség color_pressed() {
+        menu_button.elrejt();
         color_menu.show();
 
-        style_button.move(0, 50);
-        style_menu.move(0, 50);
-        if (!style_open)
-            style_menu.hide();
-        else
-            style_button.hide();
+        style_button.mozgat(0, 50);
+        style_menu.mozgat(0, 50);
+        ha (!style_open)
+            style_menu.elrejt();
+        különben
+            style_button.elrejt();
     }
 
-    void solid_pressed() {
-        change_style(Line_style::solid);
+    üresség solid_pressed() {
+        change_style(Vonal_stílus::tömör);
         hide_style_menu();
     }
 
-    void dash_pressed() {
-        change_style(Line_style::dash);
+    üresség dash_pressed() {
+        change_style(Vonal_stílus::csík);
         hide_style_menu();
     }
 
-    void dot_pressed() {
-        change_style(Line_style::dot);
+    üresség dot_pressed() {
+        change_style(Vonal_stílus::pont);
         hide_style_menu();
     }
 
-    void dashdot_pressed() {
-        change_style(Line_style::dashdot);
+    üresség dashdot_pressed() {
+        change_style(Vonal_stílus::csíkpont);
         hide_style_menu();
     }
 
-    void dashdotdot_pressed() {
-        change_style(Line_style::dashdotdot);
+    üresség dashdotdot_pressed() {
+        change_style(Vonal_stílus::csíkpontpont);
         hide_style_menu();
     }
 
-    void style_pressed() {
+    üresség style_pressed() {
         style_button.hide();
-        style_menu.show();
-        style_open = true;
+        style_menu.mutat();
+        style_open = igaz;
     }
 };

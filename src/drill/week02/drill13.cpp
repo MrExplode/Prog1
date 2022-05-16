@@ -1,75 +1,76 @@
 #include "../../gui/Simple_window.h"
 #include "../../gui/Graph.h"
+#include "hulang.h"
 
-using namespace Graph_lib;
+használ névűr Grafikus_könyvtár;
 
-bool running = true;
+logikai running = igaz;
 
-void exit(Address, Address pw)
+üresség kijárat(Cím, Cím pw)
 {
-    running = false;
-    reference_to<Simple_window>(pw).hide();
+    running = hamis;
+    referencia_hozzá<Egyszerű_ablak>(pw).elrejt();
 }
 
-int main()
+szám fő()
 {
-    try
+    próbál
     {
-        Point windowLocation{200, 400};
-        Simple_window win{windowLocation, 1000, 800, "drill13"};
-        win.wait_for_button();
+        Pont windowLocation{200, 400};
+        Egyszerű_ablak win{windowLocation, 1000, 800, "drill13"};
+        win.várj_a_gombra();
 
-        Lines grid;
+        Vonalak grid;
         int x_size = 800;
         int y_size = 800;
-        for (int i = 0; i <= x_size; i += 100)
+        mert (szám i = 0; i <= x_size; i += 100)
         {
             // horizontal line
-            grid.add(Point{0, i}, Point{x_size, i});
+            grid.hozzáad(Pont{0, i}, Pont{x_size, i});
             // vertical line
-            grid.add(Point{i, 0}, Point{i, y_size});
+            grid.add(Pont{i, 0}, Pont{i, y_size});
         }
-        win.attach(grid);
-        win.wait_for_button();
+        win.csatlakoztat(grid);
+        win.várj_a_gombra();
 
-        Vector_ref<Graph_lib::Rectangle> rectangles;
-        for (int i = 0; i < 8; i++)
+        Vector_ref<Grafikus_könyvtár::Téglalap> rectangles;
+        mert (szám i = 0; i < 8; i++)
         {
-            rectangles.push_back(new Graph_lib::Rectangle{Point{i * 100, i * 100}, 100, 100});
-            rectangles[rectangles.size() - 1].set_fill_color(Color::red);
-            win.attach(rectangles[rectangles.size() - 1]);
+            rectangles.nyom_hátra(új Grafikus_könyvtár::Téglalap{Pont{i * 100, i * 100}, 100, 100});
+            rectangles[rectangles.méret() - 1].kitöltő_szín_beállít(Szín::piros);
+            win.csatlakoztat(rectangles[rectangles.méret() - 1]);
         }
-        win.wait_for_button();
+        win.várj_a_gombra();
 
-        Image img1{Point(300, 100), "image.jpg"};
-        Image img2{Point(100, 300), "image.jpg"};
-        Image img3{Point(500, 300), "image.jpg"};
-        win.attach(img1);
-        win.attach(img2);
-        win.attach(img3);
-        win.wait_for_button();
+        Kép img1{Pont(300, 100), "image.jpg"};
+        Kép img2{Pont(100, 300), "image.jpg"};
+        Kép img3{Pont(500, 300), "image.jpg"};
+        win.csatlakoztat(img1);
+        win.csatlakoztat(img2);
+        win.csatlakoztat(img3);
+        win.várj_a_gombra();
 
-        Button exitButton{Point(x_max() - 150, 0), 70, 20, "Exit", exit};
-        win.attach(exitButton);
+        Gomb exitButton{Pont(x_max() - 150, 0), 70, 20, "Kijárat", kijárat};
+        win.csatlakoztat(exitButton);
 
-        while (running)
+        miközben (running)
         {
-            int x = (rand() % 7 + 1) * 100;
-            int y = (rand() % 7 + 1) * 100;
-            Image img{Point(x, y), "image.jpg"};
-            img.set_mask(Point(50, 50), 100, 100);
-            win.attach(img);
-            win.wait_for_button();
+            szám x = (véletlen() % 7 + 1) * 100;
+            szám y = (véletlen() % 7 + 1) * 100;
+            Kép img{Pont(x, y), "image.jpg"};
+            img.maszk_beállít(Pont(50, 50), 100, 100);
+            win.csatlakoztat(img);
+            win.várj_a_gombra();
         }
     }
-    catch (exception &e)
+    elkap (kivétel &e)
     {
-        cout << "error:" << e.what() << endl;
-        return 1;
+        cki << "hiba:" << e.mi() << sorv;
+        visszaad 1;
     }
-    catch (...)
+    elkap (...)
     {
-        cout << "unknown error" << endl;
-        return 2;
+        cki << "ismeretlen hiba" << sorv;
+        visszaad 2;
     }
 }

@@ -1,79 +1,80 @@
 #include <iostream>
 #include <string>
+#include "hulang.h"
 
-using namespace std;
+használ névűr alap;
 
-class B1
+osztály B1
 {
-public:
-    virtual void vf()
+nyilvános:
+    virtuális üresség vf()
     {
-        cout << "B1:vf()" << endl;
+        cki << "B1:vf()" << sorv;
     }
-    void f()
+    üresség f()
     {
-        cout << "B1:f()" << endl;
+        cki << "B1:f()" << sorv;
     }
     // abstract
-    virtual void pvf() = 0;
+    virtuális üresség pvf() = 0;
 };
 
-class D1 : public B1
+osztály D1 : nyilvános B1
 {
-public:
-    virtual void vf()
+nyilvános:
+    virtuális üresség vf()
     {
-        cout << "D1:vf()" << endl;
+        cki << "D1:vf()" << sorv;
     }
-    void f()
+    üresség f()
     {
-        cout << "D1:f()" << endl;
+        cki << "D1:f()" << sorv;
     }
-    virtual void pvf() = 0;
+    virtuális üresség pvf() = 0;
 };
 
-class D2 : public D1
+osztály D2 : nyilvános D1
 {
-public:
-    void pvf()
+nyilvános:
+    üresség pvf()
     {
-        cout << "D2:pvf()" << endl;
+        cki << "D2:pvf()" << sorv;
     }
 };
 
-class B2
+osztály B2
 {
-public:
-    virtual void pvf() = 0;
+nyilvános:
+    virtuális üresség pvf() = 0;
 };
 
-class D21 : public B2
+osztály D21 : nyilvános B2
 {
-public:
-    string s;
+nyilvános:
+    szöveg s;
     // implementing parent abstract
-    void pvf()
+    üresség pvf()
     {
-        cout << s << endl;
+        cki << s << sorv;
     }
 };
 
-class D22 : public B2
+osztály D22 : nyilvános B2
 {
-public:
-    int n;
-    void pvf()
+nyilvános:
+    szám n;
+    üresség pvf()
     {
-        cout << n << endl;
+        cki << n << sorv;
     }
 };
 
-void f(B2 &b2ref)
+üresség f(B2 &b2ref)
 {
     b2ref.pvf();
 }
 
-int main()
+szám fő()
 {
     /*B1 b1;
     b1.vf();

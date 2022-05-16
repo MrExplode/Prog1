@@ -1,102 +1,103 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "hulang.h"
 
-using namespace std;
+használ névűr alap;
 
-template<class T>
-struct S {
+minta<osztály T>
+struktúra S {
     S(T param = 0) : val(param) {}
     T& get();
-    const T& get() const;
-    void set(T other) { val = other; };
-    void operator=(const T& value);
-    private:
+    állandó T& get() állandó;
+    üresség set(T other) { val = other; };
+    üresség kezelő=(állandó T& value);
+    privát:
         T val;
 };
 
-template<class T>
+minta<osztály T>
 T& S<T>::get() {
-    return val;
+    visszaad val;
 }
 
-template<class T>
-const T& S<T>::get() const {
-    return val;
+minta<osztály T>
+állandó T& S<T>::get() állandó {
+    visszaad val;
 }
 
-template<class T>
-void S<T>::operator=(const T& value){
+minta<osztály T>
+üresség S<T>::kezelő=(állandó T& value){
 	val = value;
 }
 
-template<typename T>
+minta<típusnév T>
 T& read_val(T& value) {
-    std::cin >> value;
+    alap::cbe >> value;
     // modified for ease of use (inlining function)
-    return value;
+    visszaad value;
 }
 
-template<class T>
-ostream& operator<<(ostream& os, vector<T>& vector) {
+minta<osztály T>
+kifolyam& kezelő<<(kifolyam& os, vektor<T>& vector) {
     os << "{ ";
-    for (int i = 0; i < vector.size(); i++)
-        os << vector[i] << (i < vector.size() - 1 ? ", " : " ");
-    return os << "}" << std::endl;
+    mert (szám i = 0; i < vector.méret(); i++)
+        os << vector[i] << (i < vector.méret() - 1 ? ", " : " ");
+    visszaad os << "}" << alap::sorv;
 }
 
-template<class T>
-istream& operator>>(istream& is, vector<T>& vector) {
-    std::cout << "vector input format: { value, value, value }" << std::endl;
-    char dummy;
-    if (read_val(dummy) != '{') {
+minta<osztály T>
+befolyam& operator>>(befolyam& is, vektor<T>& vector) {
+    alap::cki << "vektor bejövetel formátum: { érték, érték, érték }" << alap::sorv;
+    karakter dummy;
+    ha (read_val(dummy) != '{') {
         is.unget();
-        return is;
+        visszaad is;
     }
-    for (T value; is >>value;) {
+    mert (T value; is >>value;) {
         vector.push_back(value);
-        if (read_val(dummy) != ',') {
+        ha (read_val(dummy) != ',') {
             read_val(dummy);
-            break;
+            eltör;
         }
     }
-    return is;
+    visszaad is;
 }
 
-int main() {
-    S<int> def;
-    S<int> iw {12};
-    S<char> cw {'x'};
-    S<double> dw {1.234};
-    S<string> sw {"rip bozo"};
-    S<vector<int>> vw {std::vector<int>{ 9, 8, 7, 6, 5 }};
+szám fő() {
+    S<szám> def;
+    S<szám> iw {12};
+    S<karakter> cw {'x'};
+    S<tört> dw {1.234};
+    S<szöveg> sw {"rip bozo"};
+    S<vektor<szám>> vw {alap::vektor<szám>{ 9, 8, 7, 6, 5 }};
 
-    std::cout << "int wrapper:\t" << iw.get() << std::endl;
-    std::cout << "char wrapper:\t" << cw.get() << std::endl;
-    std::cout << "double wrapper:\t" << dw.get() << std::endl;
-    std::cout << "string wrapper:\t" << sw.get() << std::endl;
-    std::cout << "vector wrapper:\t" << vw.get() << std::endl;
+    alap::cki << "szám csomagoló:\t" << iw.get() << alap::sorv;
+    alap::cki << "karakter csomagoló:\t" << cw.get() << alap::sorv;
+    alap::cki << "tört csomagoló:\t" << dw.get() << alap::sorv;
+    alap::cki << "szöveg csomagoló:\t" << sw.get() << alap::sorv;
+    alap::cki << "vektor csomagoló:\t" << vw.get() << alap::sorv;
 
-    int i;
+    szám i;
     iw.set(read_val(i));
 
-    char c;
+    karakter c;
     //cw.set(read_val(c));
     cw = read_val(c);
 
-    double d;
+    tört d;
     dw.set(read_val(d));
 
-    string s;
+    szöveg s;
     sw.set(read_val(s));
 
-    vector<int> v;
+    vektor<szám> v;
     vw.set(read_val(v));
 
-    std::cout << std::endl << "updated values:" << std::endl;
-    std::cout << "int wrapper:\t" << iw.get() << std::endl;
-    std::cout << "char wrapper:\t" << cw.get() << std::endl;
-    std::cout << "double wrapper:\t" << dw.get() << std::endl;
-    std::cout << "string wrapper:\t" << sw.get() << std::endl;
-    std::cout << "vector wrapper:\t" << vw.get() << std::endl;
+    alap::cki << alap::sorv << "frissített értékek:" << alap::sorv;
+    alap::cki << "szám csomagoló:\t" << iw.get() << alap::sorv;
+    alap::cki << "karakter csomagoló:\t" << cw.get() << alap::sorv;
+    alap::cki << "tört csomagoló:\t" << dw.get() << alap::sorv;
+    alap::cki << "szöveg csomagoló:\t" << sw.get() << alap::sorv;
+    alap::cki << "vektor csomagoló:\t" << vw.get() << alap::sorv;
 }

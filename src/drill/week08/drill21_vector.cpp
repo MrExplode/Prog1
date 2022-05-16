@@ -5,58 +5,52 @@
 #include <numeric>
 #include <algorithm>
 #include <functional>
+#include "hulang.h"
 
-using namespace std;
+használ névűr alap;
 
-template<class T>
-ostream& operator<<(ostream& os, vector<T>& vector) {
+minta<osztály T>
+kifolyam& kezelő<<(kifolyam& os, vektor<T>& vector) {
     os << "{ ";
-    for (const auto& e : vector)
+    mert (állandó auto& e : vector)
         os << e << " ";
     os << "}";
-    return os;
+    visszaad os;
 }
 
-int main() {
-    vector<double> vd;
-    ifstream fileIn {"data2.txt"};
-    double value;
-    while (fileIn >> value)
-        vd.push_back(value);
+szám fő() {
+    vektor<tört> vd;
+    beffolyam fileIn {"data2.txt"};
+    tört value;
+    miközben (fileIn >> value)
+        vd.nyom_hátra(value);
     
-    std::cout << vd << std::endl;
+    alap::cki << vd << alap::sorv;
 
-    vector<int> vi (vd.size());
-    //for (double d : vd)
-    //    vi.push_back(d);
-    std::copy(vd.begin(), vd.end(), vi.begin());
+    vektor<szám> vi (vd.méret());
+    alap::copy(vd.kezd(), vd.vég(), vi.kezd());
 
-    std::cout << "pairs of elements: " << std::endl;
-    for (int i = 0; i < vd.size(); i++)
-        std::cout << vd[i] << "\t: " << vi[i] << std::endl;
+    alap::cki << "párok: " << alap::sorv;
+    mert (szám i = 0; i < vd.méret(); i++)
+        alap::cki << vd[i] << "\t: " << vi[i] << alap::sorv;
 
-    double doubleSum = std::accumulate(vd.begin(), vd.end(), 0.0);
-    //for (double d : vd)
-    //    doubleSum += d;
-    std::cout << std::endl << "Sum of double vector: " << doubleSum << std::endl << std::endl;
+    tört doubleSum = alap::felhalmoz(vd.kezd(), vd.vég(), 0.0);
+    alap::cki << alap::sorv << "tört vektor összege: " << doubleSum << alap::sorv << alap::sorv;
 
-    int intSum = std::accumulate(vi.begin(), vi.end(), 0);
-    //for (int i : vi)
-    //    intSum += i;
-    double diff_sum = std::inner_product(vd.begin(), vd.end(), vi.begin(), 0.0, std::plus<double>(), std::minus<double>());
-    std::cout << "Difference of sums: " << (doubleSum - intSum) << " " << diff_sum << std::endl << std::endl;
+    szám számSum = alap::felhalmoz(vi.kezd(), vi.vég(), 0);
+    tört diff_sum = alap::belső_termék(vd.kezd(), vd.vég(), vi.kezd(), 0.0, alap::összead<tört>(), alap::kivon<tört>());
+    alap::cki << "összegek különbsége: " << (doubleSum - számSum) << " " << diff_sum << alap::sorv << alap::sorv;
 
-    std::reverse(vd.begin(), vd.end());
-    std::cout << "Reverse double vector: " << vd << std::endl << std::endl;
+    alap::megfordít(vd.kezd(), vd.vég());
+    alap::cki << "megfordított tört vektor: " << vd << alap::sorv << alap::sorv;
 
-    double vdMean = doubleSum / vd.size();
-    std::cout << "Double vector mean: " << vdMean << std::endl << std::endl;
+    tört vdMean = doubleSum / vd.méret();
+    alap::cki << "tö9rt vektor átlag: " << vdMean << alap::sorv << alap::sorv;
 
-    vector<double> vd2;
-    // std::back_inserter creates an iterator that uses push_back internally, therefore we can "iterate" with it on an empty vector
-    auto it = std::copy_if(vd.begin(), vd.end(), std::back_inserter(vd2), [vdMean](double value) { return value < vdMean; });
-    std::cout << "Values below mean: " << vd2 << std::endl << std::endl;
+    vektor<tört> vd2;
+    auto it = alap::copy_if(vd.kezd(), vd.vég(), alap::hátra_szúró(vd2), [vdMean](tört value) { visszaad value < vdMean; });
+    alap::cki << "Values below mean: " << vd2 << alap::sorv << alap::sorv;
 
-    std::sort(vd.begin(), vd.end());
-    std::cout << "Sorted double array: " << vd << std::endl;
+    alap::sorbarendez(vd.kezd(), vd.vég());
+    alap::cki << "Sorted double array: " << vd << alap::sorv;
 }

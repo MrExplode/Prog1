@@ -1,75 +1,74 @@
 #include "../../gui/Simple_window.h"
 #include "../../gui/Graph.h"
 #include <functional>
+#include "hulang.h"
 
-constexpr int rangeMin = -10;
-constexpr int rangeMax = 11;
-Point origin{300, 300};
-constexpr int resolution = 400;
-constexpr double scale = 20;
+állandókifejez szám rangeMin = -10;
+állandókifejez szám rangeMax = 11;
+Pont origin{300, 300};
+állandókifejez szám resolution = 400;
+állandókifejez tört scale = 20;
 
-int main()
+szám fő()
 {
-    try
+    próbál
     {
-        Simple_window win{Point{200, 400}, 600, 600, "Function graphs"};
+        Egyszerű_ablak win{Pont{200, 400}, 600, 600, "Funkció gráfok"};
 
-        Axis xa{Axis::x, Point{100, 300}, 400, 20, "1 == 20 pixels"};
-        Axis ya{Axis::y, Point{300, 500}, 400, 20, "1 == 20 pixels"};
-        xa.set_color(Color::red);
-        ya.set_color(Color::red);
-        win.attach(xa);
-        win.attach(ya);
+        Tengely xa{Tengely::x, Pont{100, 300}, 400, 20, "1 == 20 pixels"};
+        Tengely ya{Tengely::y, Pont{300, 500}, 400, 20, "1 == 20 pixels"};
+        xa.szín_beállít(Szín::piros);
+        ya.szín_beállít(Szín::piros);
+        win.csatlakoztat(xa);
+        win.csatlakoztat(ya);
 
         // explicit return type declaration needed (otherwise int will be assumed as return type)
-        auto one = [](double x) -> double
+        auto one = [](tört x) -> tört
         {
-            return 1;
+            visszaad 1;
         };
 
-        auto slope = [](double x)
+        auto slope = [](tört x)
         {
-            return x / 2;
+            visszaad x / 2;
         };
 
-        auto square = [](double x)
+        auto square = [](tört x)
         {
-            return x * x;
+            visszaad x * x;
         };
 
-        auto sloping_cos = [](double x)
+        auto sloping_cos = [](tört x)
         {
-            // this is the place where I'd do a fancy local capture
-            // but a lambda can only be converted to a function pointer if it does not capture
-            return cos(x) + x / 2;
+            visszaad cos(x) + x / 2;
         };
 
-        Text slopeText{Point{100, 380}, "x/2"};
-        win.attach(slopeText);
+        Szöveg slopeText{Pont{100, 380}, "x/2"};
+        win.csatlakoztat(slopeText);
 
-        Function f1{one, rangeMin, rangeMax, origin, resolution, scale, scale};
-        Function f2{slope, rangeMin, rangeMax, origin, resolution, scale, scale};
-        Function f3{square, rangeMin, rangeMax, origin, resolution, scale, scale};
-        Function f4{cos, rangeMin, rangeMax, origin, resolution, scale, scale};
-        f4.set_color(Color::blue);
-        Function f5(sloping_cos, rangeMin, rangeMax, origin, resolution, scale, scale);
+        Funkció f1{one, rangeMin, rangeMax, origin, resolution, scale, scale};
+        Funkció f2{slope, rangeMin, rangeMax, origin, resolution, scale, scale};
+        Funkció f3{square, rangeMin, rangeMax, origin, resolution, scale, scale};
+        Funkció f4{cos, rangeMin, rangeMax, origin, resolution, scale, scale};
+        f4.szín_beállít(Szín::kék);
+        Funkció f5(sloping_cos, rangeMin, rangeMax, origin, resolution, scale, scale);
 
-        win.attach(f1);
-        win.attach(f2);
-        win.attach(f3);
-        win.attach(f4);
-        win.attach(f5);
+        win.csatlakoztat(f1);
+        win.csatlakoztat(f2);
+        win.csatlakoztat(f3);
+        win.csatlakoztat(f4);
+        win.csatlakoztat(f5);
 
-        win.wait_for_button();
+        win.várj_a_gombra();
     }
-    catch (exception &e)
+    elkap (kivétel &e)
     {
-        cout << "error: " << e.what() << endl;
-        return 1;
+        chiba << "hiba: " << e.mi() << sorv;
+        visszaad 1;
     }
-    catch (...)
+    elkap (...)
     {
-        cout << "unknown error" << endl;
-        return 2;
+        chiba << "ismeretlen hiba" << sorv;
+        visszaad 2;
     }
 }

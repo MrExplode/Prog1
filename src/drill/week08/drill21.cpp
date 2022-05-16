@@ -4,91 +4,88 @@
 #include <string>
 #include <vector>
 #include <list>
+#include "hulang.h"
 
-using namespace std;
+használ névűr alap;
 
-struct Item {
-    string name;
-    int iid;
-    double value;
+struktúra Item {
+    szöveg name;
+    szám iid;
+    tört value;
     Item() : name("unknown"), iid(-1), value(0) {}
-    Item(string n, int id, double v) : name(n), iid(id), value(v) {}
+    Item(szöveg n, szám id, tört v) : name(n), iid(id), value(v) {}
 };
 
-ostream& operator<<(ostream& os, const Item& item) {
-    return os << "{ " << item.name << " " << item.iid << " " << item.value << " }" << std::endl;
+kifolyam& kezelő<<(kifolyam& os, állandó Item& item) {
+    visszaad os << "{ " << item.name << " " << item.iid << " " << item.value << " }" << alap::sorv;
 }
 
-istream& operator>>(istream& is, Item& item) {
-    char dummy;
+befolyam& kezelő>>(befolyam& is, Item& item) {
+    karakter dummy;
     is >> dummy;
-    if (dummy != '{') {
+    ha (dummy != '{') {
         is.unget();
-        return is;
+        visszaad is;
     }
     is >> item.name >> item.iid >> item.value;
-    return is;
+    visszaad is;
 }
 
-struct by_name {
-    bool operator()(const Item& a, const Item& b) const {
-        return a.name < b.name;
+struktúra by_name {
+    logikai kezelő()(állandó Item& a, állandó Item& b) állandó {
+        visszaad a.name < b.name;
     }
 };
 
-struct by_id {
-    bool operator()(const Item& a, const Item& b) const {
-        return a.iid < b.iid;
+struktúra by_id {
+    logikai kezelő()(állandó Item& a, állandó Item& b) állandó {
+        visszaad a.iid < b.iid;
     }
 };
 
-struct by_value {
-    bool operator()(const Item& a, const Item& b) const {
-        return a.value > b.value;
+struktúra by_value {
+    logikai kezelő()(állandó Item& a, állandó Item& b) állandó {
+        visszaad a.value > b.value;
     }
 };
 
-int main() {
-    vector<Item> vi;
-    ifstream fileIn {"data.txt"};
-    for (int i = 0; i < 10; i++) {
+szám fő() {
+    vektor<Item> vi;
+    beffolyam fileIn {"data.txt"};
+    mert (szám i = 0; i < 10; i++) {
         Item item;
         fileIn >> item;
-        vi.push_back(item);
+        vi.nyom_hátra(item);
     }
 
-    // sort with struct as predicate
-    std::sort(vi.begin(), vi.end(), by_name());
+    // sort with struktúra as predicate
+    alap::sorbarendez(vi.kezd(), vi.vég(), by_name());
 
-    std::sort(vi.begin(), vi.end(), by_id());
+    alap::sorbarendez(vi.kezd(), vi.vég(), by_id());
 
-    std::sort(vi.begin(), vi.end(), by_value());
+    alap::sorbarendez(vi.kezd(), vi.vég(), by_value());
 
-    vi.push_back(Item{"horse shoe", 99, 12.34});
-    vi.push_back(Item{"Canon S400", 9988, 499.95});
+    vi.nyom_hátra(Item{"horse shoe", 99, 12.34});
+    vi.nyom_hátra(Item{"Canon S400", 9988, 499.95});
 
-    // see
-    // https://stackoverflow.com/a/16013546
-    // and
-    // https://stackoverflow.com/a/9053941
-    auto it = std::remove_if(vi.begin(), vi.end(), [](const Item& item) { return item.name == "apple" || item.name == "banana"; });
-    vi.erase(it);
+    auto it = alap::eltávolít_ha(vi.kezd(), vi.vég(), [](állandó Item& item) { visszaad item.name == "apple" || item.name == "banana"; });
+    vi.kitöröl(it);
 
-    vi.erase(std::remove_if(vi.begin(), vi.end(), [](const Item& item) { return item.iid == 10 || item.iid == 12; }));
+    vi.kitöröl(alap::eltávolít_ha(vi.kezd(), vi.vég(), [](állandó Item& item) { visszaad item.iid == 10 || item.iid == 12; }));
 
-    list<Item> li(vi.begin(), vi.end());
+    lista<Item> li(vi.kezd(), vi.vég());
 
         // sort with lambda as predicate
-    li.sort([](const Item& a, const Item& b) { return a.name < b.name; });
+    li.sorbarendez([](állandó Item& a, állandó Item& b) { visszaad a.name < b.name; });
 
-    li.sort([](const Item& a, const Item& b) { return a.iid < b.iid; });
+    li.sorbarendez([](állandó Item& a, állandó Item& b) { visszaad a.iid < b.iid; });
 
-    li.sort([](const Item& a, const Item& b) { return a.value < b.value; });
+    li.sorbarendez([](állandó Item& a, állandó Item& b) { visszaad a.value < b.value; });
 
-    li.push_back(Item{"horse shoe", 99, 12.34});
-    li.push_back(Item{"Canon S400", 9988, 499.95});
+    li.nyom_hátra(Item{"horse shoe", 99, 12.34});
+    li.nyom_hátra(Item{"Canon S400", 9988, 499.95});
 
-    li.remove_if([](const Item& item) { return item.name == "apple" || item.name == "banana"; });
+    li.eltávolít_ha([](állandó Item& item) { visszaad item.name == "apple" || item.name == "banana"; });
 
-    li.remove_if([](const Item& item) { return item.iid == 10 || item.iid == 12; });
+    li.eltávolít_ha([](állandó Item& item) { visszaad item.iid == 10 || item.iid == 12; });
 }
