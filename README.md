@@ -1,6 +1,6 @@
 # Prog1
 
-Source codes for `high level programming 1` course.
+Hungarian version of the `high level programming 1` course.
 
 ### Compiling
 
