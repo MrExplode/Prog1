@@ -83,7 +83,7 @@ int main() {
 
     li.sort([](const Item& a, const Item& b) { return a.iid < b.iid; });
 
-    li.sort([](const Item& a, const Item& b) { return a.value < b.value; });
+    li.sort([](const Item& a, const Item& b) { return a.value > b.value; });
 
     li.push_back(Item{"horse shoe", 99, 12.34});
     li.push_back(Item{"Canon S400", 9988, 499.95});

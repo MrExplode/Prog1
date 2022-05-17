@@ -56,7 +56,6 @@ istream& operator>>(istream& is, vector<T>& vector) {
     for (T value; is >>value;) {
         vector.push_back(value);
         if (read_val(dummy) != ',') {
-            read_val(dummy);
             break;
         }
     }

@@ -61,7 +61,7 @@ int main() {
         std::cout << "mis map: " << std::endl;
         print(mis);
     } catch (exception& e) {
-        std::cerr << "ecxception: " << e.what() << std::endl;
+        std::cerr << "exception: " << e.what() << std::endl;
     } catch (...) {
         std::cerr << "unknown exception!" << std::endl;
     }
