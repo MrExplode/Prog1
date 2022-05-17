@@ -15,7 +15,7 @@ minta<osztály T>
 }
 
 template<typename T>
-void printContents2(const T& container) {
+üresség printContents2(const T& container) {
     for (auto& element : container) {
         alap::cki << element << " ";
     }
@@ -23,7 +23,7 @@ void printContents2(const T& container) {
 }
 
 template<class T>
-void increment(T& container, int amount) {
+üresség increment(T& container, int amount) {
     for (auto& element : container)
         element += amount;
 }
@@ -37,7 +37,7 @@ O custom_copy(I start, I end, O target) {
 }
 
 
-int main() {
+szám fő() {
     állandókifejez szám size = 10;
     szám nums[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
     
