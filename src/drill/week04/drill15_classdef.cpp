@@ -43,7 +43,14 @@ istream &operator>>(istream &is, Person &p)
     string first_name;
     string second_name;
     int age;
-    is >> first_name >> second_name >> age;
+    is >> first_name;
+    if (first_name == "end") {
+        is.unget();
+        p = Person("end", "", 0);
+        return is;
+    }
+    is >> second_name;
+    is >> age;
     p = Person(first_name, second_name, age);
     return is;
 }
